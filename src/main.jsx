@@ -8,6 +8,7 @@ import { BrowserRouter } from 'react-router-dom'
 import { SignUpProvider } from './context/SignUpContext.jsx'
 import { LogoutProvider } from './context/LogoutContext.jsx'
 import { LoginProvider } from './context/LoginContext.jsx'
+import { CreatePostProvider } from './context/CreatePostContext.jsx'
 
 const styles = {
   global: (props) => ({
@@ -27,16 +28,18 @@ const theme = extendTheme({ config, styles })
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode> 
-    <LoginProvider>
-      <LogoutProvider>
-        <SignUpProvider> 
-          <BrowserRouter>
-            <ChakraProvider theme={theme}>
-              <App />
-            </ChakraProvider>
-          </BrowserRouter>
-        </SignUpProvider>
-      </LogoutProvider>
-    </LoginProvider>
+    <CreatePostProvider>
+      <LoginProvider>
+        <LogoutProvider>
+          <SignUpProvider> 
+            <BrowserRouter>
+              <ChakraProvider theme={theme}>
+                <App />
+              </ChakraProvider>
+            </BrowserRouter>
+          </SignUpProvider>
+        </LogoutProvider>
+      </LoginProvider>
+    </CreatePostProvider>
   </React.StrictMode>
 )

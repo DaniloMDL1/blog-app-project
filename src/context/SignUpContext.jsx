@@ -34,6 +34,7 @@ export const SignUpProvider = ({ children }) => {
                     email: inputs.email,
                     profilePic: "",
                     posts: [],
+                    likedPosts: [],
                     createdAt: Date.now()
                 }
 

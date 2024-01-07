@@ -1,14 +1,16 @@
-import { Avatar, Box, Button, Container, Flex, Link, Menu, MenuButton, MenuItem, MenuList, useColorMode } from "@chakra-ui/react"
+import { Avatar, Box, Button, Container, Flex, Link, Menu, MenuButton, MenuItem, MenuList, useColorMode, useDisclosure } from "@chakra-ui/react"
 import { Link as RouterLink } from "react-router-dom"
 import { FaMoon } from "react-icons/fa6";
 import { FaSun } from "react-icons/fa";
 import { ChevronDownIcon } from "@chakra-ui/icons";
 import { useContext } from "react";
 import { LogoutContext } from "../../context/LogoutContext";
+import PostModal from "../modal/PostModal";
 
 const Header = () => {
     const { colorMode, toggleColorMode } = useColorMode()
     const { handleLogout, loading } = useContext(LogoutContext)
+    const { isOpen, onOpen, onClose } = useDisclosure()
 
     return (
         <Box position={"fixed"} py={5} top={0} right={0} left={0} zIndex={10} bg={colorMode === "light" ? "white" : "gray.800"} h={"80px"} borderBottom={"1px solid"} borderColor={colorMode === "light" ? "gray.100" : "gray.700"}>
@@ -24,9 +26,10 @@ const Header = () => {
                         </Flex>
                     </Flex>
                     <Flex alignItems={"center"} gap={4}>
-                        <Button colorScheme="blue" variant={"solid"}>
+                        <Button onClick={onOpen} colorScheme="blue" variant={"solid"}>
                             Add Post
                         </Button>
+                        <PostModal isOpen={isOpen} onClose={onClose}/>
                         <Menu>
                             <MenuButton as={Button} rightIcon={<ChevronDownIcon />} bg={"transparent"} _hover={{ bg: "transparent" }}>
                                 <Avatar size={"sm"}/>   

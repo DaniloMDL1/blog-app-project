@@ -1,13 +1,10 @@
-import { Box, Container } from "@chakra-ui/react"
 import Posts from "../components/post/Posts"
 
 const HomePage = () => {
   return (
-    <Box pt={"90px"} maxW={"4xl"}>
-      <Container w={"full"}>
-          <Posts />
-      </Container>
-    </Box>
+    <div style={{ paddingTop: "90px", paddingBottom: "20px", maxWidth: "1440px", marginInline: "auto"}}>
+        <Posts />
+    </div>
   )
 }
 
