@@ -1,4 +1,4 @@
-import { Box, Flex, } from "@chakra-ui/react"
+import { Box, Flex, Spinner, Text, } from "@chakra-ui/react"
 import Post from "./Post"
 import { useEffect, useState } from "react"
 import { collection, doc, getDoc, onSnapshot, orderBy, query, where } from "firebase/firestore"
@@ -11,6 +11,7 @@ const Posts = () => {
   const [user, loading, error] = useAuthState(auth);
   const { pathname } = useLocation()
   const [username, setUsername] = useState("")
+  const [loadingPosts, setLoadingPosts] = useState(false)
   let unsub
     
   useEffect(() => {
@@ -36,13 +37,26 @@ const Posts = () => {
         setPosts(newPosts)
       })
     } else if(pathname === `/${username}/posts`) {
-      const q = query(collection(db, "posts"), where("uid", "==", user.uid))
+      setLoadingPosts(true)
+      const q = query(collection(db, "posts"), where("uid", "==", user.uid), orderBy("createdAt", "desc"))
       unsub = onSnapshot(q, (querySnapshot) => {
         const currentUserPosts = []
         querySnapshot.forEach((doc) => {
           currentUserPosts.push({ id: doc.id, ...doc.data() })
         })
         setPosts(currentUserPosts)
+        setLoadingPosts(false)
+      })
+    } else if(pathname === `/${username}/liked-posts`) {
+      setLoadingPosts(true)
+      const q = query(collection(db, "posts"), where("likes", "array-contains", user.uid), orderBy("createdAt", "desc"))
+      unsub = onSnapshot(q, (querySnapshot) => {
+        const userLikedPosts = []
+        querySnapshot.forEach((doc) => {
+          userLikedPosts.push({ id: doc.id, ...doc.data() })
+        })
+        setPosts(userLikedPosts)
+        setLoadingPosts(false)
       })
     }
 
@@ -55,6 +69,17 @@ const Posts = () => {
 
   return (
     <Box w={"full"}>
+      {loadingPosts && 
+        <Flex justify={"center"}>
+          <Spinner size={"xl"}/>
+        </Flex>
+      }
+      {!loadingPosts && pathname === `/${username}/posts` && posts.length === 0 &&
+        <Text fontSize={"25px"} textAlign={"center"}>No posts for now</Text>
+      }
+      {!loadingPosts && pathname === `/${username}/liked-posts` && posts.length === 0 &&
+        <Text fontSize={"25px"} textAlign={"center"}>No liked posts for now</Text>
+      }
       <Flex gap={12} flexWrap={"wrap"}>
         {posts.map((post) => (
           <Post 
