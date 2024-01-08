@@ -3,14 +3,31 @@ import { Link as RouterLink } from "react-router-dom"
 import { FaMoon } from "react-icons/fa6";
 import { FaSun } from "react-icons/fa";
 import { ChevronDownIcon } from "@chakra-ui/icons";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { LogoutContext } from "../../context/LogoutContext";
 import PostModal from "../modal/PostModal";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth, db } from "../../config/firebase";
+import { doc, getDoc } from "firebase/firestore";
 
 const Header = () => {
     const { colorMode, toggleColorMode } = useColorMode()
     const { handleLogout, loading } = useContext(LogoutContext)
     const { isOpen, onOpen, onClose } = useDisclosure()
+    const [user, , error] = useAuthState(auth);
+    const [username, setUsername] = useState("")
+    
+    useEffect(() => {
+        const getUsers =  async () => {
+            const userRef = doc(db, "users", user.uid)
+            const userSnap = await getDoc(userRef)
+            if(userSnap.exists()) {
+                setUsername(userSnap.data().username)
+            }
+        }
+
+        getUsers()
+    }, [user.uid])
 
     return (
         <Box position={"fixed"} py={5} top={0} right={0} left={0} zIndex={10} bg={colorMode === "light" ? "white" : "gray.800"} h={"80px"} borderBottom={"1px solid"} borderColor={colorMode === "light" ? "gray.100" : "gray.700"}>
@@ -21,8 +38,8 @@ const Header = () => {
                             Blog Application
                         </Link>
                         <Flex alignItems={"center"} gap={4}>
-                            <Link to="/dadsada/posts" fontSize={"17px"} style={{ textDecoration: "none" }} as={RouterLink}>Your Posts</Link>
-                            <Link to="/dadsada/liked-posts" fontSize={"17px"} style={{ textDecoration: "none" }} as={RouterLink}>Liked Posts</Link>
+                            <Link to={`/${username}/posts`} fontSize={"17px"} style={{ textDecoration: "none" }} as={RouterLink}>Your Posts</Link>
+                            <Link to={`/${username}/liked-posts`} fontSize={"17px"} style={{ textDecoration: "none" }} as={RouterLink}>Liked Posts</Link>
                         </Flex>
                     </Flex>
                     <Flex alignItems={"center"} gap={4}>
