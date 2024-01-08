@@ -27,7 +27,8 @@ const Posts = () => {
       <Flex gap={12} flexWrap={"wrap"}>
         {posts.map((post) => (
           <Post 
-            key={post.id} 
+            key={post.id}
+            post={post} 
             postImg={post.postImage} 
             postTitle={post.postTitle}
             postDesc={post.postDescription}

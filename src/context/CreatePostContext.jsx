@@ -30,9 +30,10 @@ export const CreatePostProvider = ({ children }) => {
                     comments: [],
                     createdAt: Date.now(),
                     createdBy: currentUser.username,
-                    userProfilePic: currentUser.profilePic
+                    userProfilePic: currentUser.profilePic,
+                    uid: currentUser.uid
                 }
-                
+
                 const postDocRef = await addDoc(collection(db, "posts"), postDoc)
                 await updateDoc(userRef, {
                     posts: arrayUnion(postDocRef.id)

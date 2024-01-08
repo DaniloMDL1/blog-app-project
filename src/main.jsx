@@ -9,6 +9,8 @@ import { SignUpProvider } from './context/SignUpContext.jsx'
 import { LogoutProvider } from './context/LogoutContext.jsx'
 import { LoginProvider } from './context/LoginContext.jsx'
 import { CreatePostProvider } from './context/CreatePostContext.jsx'
+import { PostLikesProvider } from './context/PostLikesContext.jsx'
+import { DeletePostProvider } from './context/DeletePostContext.jsx'
 
 const styles = {
   global: (props) => ({
@@ -28,18 +30,22 @@ const theme = extendTheme({ config, styles })
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode> 
-    <CreatePostProvider>
-      <LoginProvider>
-        <LogoutProvider>
-          <SignUpProvider> 
-            <BrowserRouter>
-              <ChakraProvider theme={theme}>
-                <App />
-              </ChakraProvider>
-            </BrowserRouter>
-          </SignUpProvider>
-        </LogoutProvider>
-      </LoginProvider>
-    </CreatePostProvider>
+    <DeletePostProvider>
+      <PostLikesProvider>
+        <CreatePostProvider>
+          <LoginProvider>
+            <LogoutProvider>
+              <SignUpProvider> 
+                <BrowserRouter>
+                  <ChakraProvider theme={theme}>
+                    <App />
+                  </ChakraProvider>
+                </BrowserRouter>
+              </SignUpProvider>
+            </LogoutProvider>
+          </LoginProvider>
+        </CreatePostProvider>
+      </PostLikesProvider>
+    </DeletePostProvider>
   </React.StrictMode>
 )

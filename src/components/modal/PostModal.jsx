@@ -14,8 +14,9 @@ const PostModal = ({ isOpen, onClose }) => {
 
     const createPost = () => {
         handleCreatePost(inputs)
-        setInputs({...inputs, postImg: "", postTitle: "", postDesc: ""})
-        onClose()
+        if(inputs.postImg && inputs.postTitle && inputs.postDesc) {
+            setInputs({...inputs, postImg: "", postTitle: "", postDesc: ""})
+        }
     }
 
     return (
