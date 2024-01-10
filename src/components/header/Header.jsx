@@ -11,7 +11,7 @@ import { auth, db } from "../../config/firebase";
 import { doc, getDoc } from "firebase/firestore";
 import EditProfileModal from "../modal/EditProfileModal";
 import { AiOutlineMenu } from "react-icons/ai";
-import MobileDrawer from "../../drawer/MobileDrawer";
+import MobileDrawer from "../drawer/MobileDrawer";
 
 const Header = () => {
     const { colorMode, toggleColorMode } = useColorMode()

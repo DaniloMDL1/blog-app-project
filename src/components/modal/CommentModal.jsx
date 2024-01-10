@@ -18,7 +18,12 @@ const CommentModal = ({ isOpen, onClose, post }) => {
     useEffect(() => {
         const postRef = doc(db, "posts", post.id)
         const unsub = onSnapshot(postRef, (doc) => {
-            setComments(doc.data().comments)
+            const postData = doc.data()
+            if(postData && postData.comments) {
+                setComments(doc.data().comments)
+            } else {
+                setComments([])
+            }
         })
 
         return () => unsub()
