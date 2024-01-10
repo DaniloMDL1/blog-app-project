@@ -4,7 +4,7 @@ import App from './App.jsx'
 import './index.css'
 import { ChakraProvider, extendTheme } from '@chakra-ui/react'
 import { mode } from '@chakra-ui/theme-tools'
-import { BrowserRouter } from 'react-router-dom'
+import { HashRouter } from 'react-router-dom'
 import { SignUpProvider } from './context/SignUpContext.jsx'
 import { LogoutProvider } from './context/LogoutContext.jsx'
 import { LoginProvider } from './context/LoginContext.jsx'
@@ -40,11 +40,11 @@ ReactDOM.createRoot(document.getElementById('root')).render(
               <LoginProvider>
                 <LogoutProvider>
                   <SignUpProvider> 
-                    <BrowserRouter>
+                    <HashRouter>
                       <ChakraProvider theme={theme}>
                         <App />
                       </ChakraProvider>
-                    </BrowserRouter>
+                    </HashRouter>
                   </SignUpProvider>
                 </LogoutProvider>
               </LoginProvider>
