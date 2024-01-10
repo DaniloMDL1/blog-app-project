@@ -80,7 +80,7 @@ const Posts = () => {
       {!loadingPosts && pathname === `/${username}/liked-posts` && posts.length === 0 &&
         <Text fontSize={"25px"} textAlign={"center"}>No liked posts for now</Text>
       }
-      <Flex gap={12} flexWrap={"wrap"}>
+      <Flex gap={12} justify={{ base: "center", md: "flex-start"}} px={4} flexWrap={"wrap"}>
         {posts.map((post) => (
           <Post 
             key={post.id}

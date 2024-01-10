@@ -8,6 +8,7 @@ import { DeletePostContext } from "../../context/DeletePostContext";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../../config/firebase";
 import CommentModal from "../modal/CommentModal";
+import { formatNumber } from "../../utils/formatNumber";
 
 const PostFooter = ({ post }) => {
     const { handlePostLikes } = useContext(PostLikesContext)
@@ -23,7 +24,7 @@ const PostFooter = ({ post }) => {
             <Box onClick={postLikes} cursor={"pointer"} position={"relative"}>
                 {isLiked ? <MdFavorite fontSize={27} color="red"/> : <MdFavoriteBorder fontSize={27}/>}
                 <Box position={"absolute"} top={3} left={5}>
-                    {likes}
+                    {formatNumber(likes)}
                 </Box>
             </Box>
             <Flex gap={4} alignItems={"center"}>
@@ -36,7 +37,6 @@ const PostFooter = ({ post }) => {
                         <MdDelete fontSize={24}/>
                     </Box>
                 }
-                
             </Flex>
         </Flex>
     )

@@ -7,8 +7,8 @@ const AuthPage = () => {
   const [isLogin, setIsLogin] = useState(true)
 
   return (
-    <Flex h={"100vh"} justifyContent={"center"} alignItems={"center"}>
-      <Container maxW={"sm"} py={2} border={"1px solid"} borderColor={"gray.400"} borderRadius={"xl"}>
+    <Flex h={"100vh"} justifyContent={"center"} px={{base: 2}} alignItems={"center"}>
+      <Container maxW={{base: "xs", md: "sm"}} py={2} border={"1px solid"} borderColor={"gray.400"} borderRadius={"xl"}>
         <Text textAlign={"center"} mb={3} fontSize={"30px"} fontWeight={"semibold"}>
           Blog Application
         </Text>

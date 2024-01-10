@@ -20,7 +20,7 @@ const PostModal = ({ isOpen, onClose }) => {
     }
 
     return (
-        <Modal isOpen={isOpen} onClose={onClose}>
+        <Modal isOpen={isOpen} onClose={onClose} size={{ base: "xs", md: "sm"}}>
             <ModalOverlay />
             <ModalContent>
             <ModalHeader>Create Post</ModalHeader>

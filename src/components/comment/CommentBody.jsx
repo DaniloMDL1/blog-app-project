@@ -7,7 +7,7 @@ const CommentBody = ({ commentText, commentCreatedAt, username, userProfilePic }
         <VStack mb={2} alignItems={"flex-start"} border={"1px solid"} borderColor={"gray.300"} p={3} rounded={"lg"}>
             <Flex justify={"space-between"} w={"full"}>
                 <Flex align={"center"} gap={2}>
-                    <Avatar size={'xs'}/>
+                    <Avatar name={username} size={'xs'}/>
                     <Text fontSize={15}>{username}</Text>
                 </Flex>
                 <Text fontSize={14}>{timeAgo(commentCreatedAt)}</Text>
