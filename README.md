@@ -1,8 +1,22 @@
-# React + Vite
+# Blog Application using React, Firebase and Chakra UI
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Sign Up Page
+<img src="./public/signup.png" alt="signup page" width="550" height="400"/>
 
-Currently, two official plugins are available:
+## Login Page
+<img src="./public/login.png" alt="signup page" width="550" height="400"/>
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+If you don't have an account you will be able to create a new one or if you have an account you will be able to login with that account.
+
+After you create new account or after you are logged in you will see home page.
+
+## Home Page
+<img src="./public/home.png" alt="signup page" width="550" height="400"/>
+
+- You will be able to change dark and light mode, also you have pages for the posts that you created and the posts that you liked.
+- You will also be able to like other people's posts and to comment on their posts.
+- User who created the post will be able to delete that post.
+
+<img src="./public/createpost.png" alt="signup page" width="550" height="400"/>
+
+- In order to be able to create post you need to have imageURL, title and description for that post.
